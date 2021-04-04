@@ -75,7 +75,7 @@ class SteamUserStats extends SteamBase {
             $result = parent::queryResource($url);
 
             if (!isset($result->playerstats)) {
-                throw new Exception('Player achievements object not found for: ' . $url);
+                throw new Exception('Player achievements stats object not found for: ' . $url);
             }
 
             return $result->playerstats;
@@ -101,7 +101,7 @@ class SteamUserStats extends SteamBase {
             $result = parent::queryResource($url);
 
             if (!isset($result->playerstats)) {
-                throw new Exception('Player achievements object not found for: ' . $url);
+                throw new Exception('Player statistics object not found for: ' . $url);
             }
 
             return $result->playerstats;
