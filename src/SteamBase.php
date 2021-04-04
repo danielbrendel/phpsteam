@@ -1,28 +1,69 @@
 <?php
 
+/*
+    PHPSteam developed by Daniel Brendel
+
+    (C) 2021 by Daniel Brendel
+
+    Version: 1.0
+    Contact: dbrendel1988<at>gmail<dot>com
+    GitHub: https://github.com/danielbrendel/
+
+    Released under the MIT license
+*/
+
 namespace PHPSteam;
 
-use GuzzleHttp\Guzzle;
-
+/**
+ * Class SteamBase
+ * 
+ * Base Steam operations and setup
+ */
 class SteamBase {
+    /**
+     * @var string $apiKey Holds the API key which is needed for certain operations
+     */
     protected $apiKey = '';
 
+    /**
+     * Construct the class
+     * 
+     * @return void
+     */
     public function __construct($apiKey)
     {
         $this->apiKey = $apiKey;
     }
 
-    protected function setApiKey($apiKey)
+    /**
+     * Set the API key
+     * 
+     * @param string $apiKey
+     * @return void
+     */
+    protected function setApiKey(string $apiKey)
     {
         $this->apiKey = $apiKey;
     }
 
-    protected function getApiKey($apiKey)
+    /**
+     * Get API key
+     * 
+     * @return string
+     */
+    protected function getApiKey(): string
     {
         return $this->apiKey;
     }
 
-    protected function queryResource($url)
+    /**
+     * Perform query to web resource
+     * 
+     * @param string url
+     * @return mixed
+     * @throws Exception
+     */
+    protected function queryResource(string $url)
     {
         try {
             $handle = curl_init($url);
