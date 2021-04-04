@@ -15,5 +15,6 @@
 	
 	<php>
         <env name="STEAM_API_KEY" value="test"/>
+		<env name="STEAM_TEST_APP" value="1001860"/>
 	</php>
 </phpunit>

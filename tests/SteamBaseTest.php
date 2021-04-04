@@ -14,11 +14,11 @@ final class SteamBaseTest extends TestCase
         $method->setAccessible(true);
 
         $obj = new SteamBase($_ENV['STEAM_API_KEY']);
-        $result = $method->invoke($obj, 'http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid=440&count=3&maxlength=300&format=json');
+        $result = $method->invoke($obj, "http://api.steampowered.com/ISteamNews/GetNewsForApp/v0002/?appid={$_ENV['STEAM_TEST_APP']}&count=3&maxlength=300&format=json");
 
         $this->assertIsObject($result);
         $this->assertTrue(isset($result->appnews->appid));
-        $this->assertEquals($result->appnews->appid, 440);
+        $this->assertEquals($result->appnews->appid, $_ENV['STEAM_TEST_APP']);
         $this->assertTrue(isset($result->appnews->newsitems));
         $this->assertTrue(count($result->appnews->newsitems) === 3);
     }
