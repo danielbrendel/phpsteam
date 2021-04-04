@@ -13,6 +13,8 @@
 
 namespace PHPSteam;
 
+use Exception;
+
 /**
  * Class SteamBase
  * 

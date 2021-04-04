@@ -13,6 +13,8 @@
 
 namespace PHPSteam;
 
+use Exception;
+
 /**
  * Class SteamNews
  * 
@@ -38,6 +40,8 @@ class SteamNews extends SteamBase {
      * @param $count How many news entities shall be returned
      * @param $maxlength Maximum length of each news entry
      * @param $format Either 'json', 'xml' or 'vdf'
+     * @return mixed
+     * @throws Exception
      */
     public function getNewsForApp($appId, $count, $maxlength, $format = 'json')
     {
