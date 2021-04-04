@@ -18,5 +18,6 @@
 		<env name="STEAM_TEST_APP" value="1001860"/>
 		<env name="STEAM_TEST_APP2" value="730"/>
 		<env name="STEAM_PLAYER_ID" value="76561198876154375"/>
+		<env name="STEAM_GAME_SERVER" value="127.0.0.1"/>
 	</php>
 </phpunit>

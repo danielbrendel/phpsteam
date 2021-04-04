@@ -104,6 +104,43 @@ public function getPlayerAchievements($appId, $steamId, $format = 'json')
 public function getUserStatsForGame($appId, $steamId, $format = 'json')
 ```
 
+### SteamApps
+```php
+/**
+ * Get Steam app list
+ * 
+ * @param $format Either 'json', 'xml' or 'vdf'
+ * @return mixed
+ * @throws Exception
+ */
+public function getAppList($format = 'json')
+```
+
+```php
+/**
+ * Get servers at address
+ * 
+ * @param $addr IP or IP:Port
+ * @param $format Either 'json', 'xml' or 'vdf'
+ * @return mixed
+ * @throws Exception
+ */
+public function getServersAtAddress($addr, $format = 'json')
+```
+
+```php
+/**
+ * Check if the specified version of a Steam app is up-to-date
+ * 
+ * @param $appid The Steam app ID
+ * @param $version The install version
+ * @param $format Either 'json', 'xml' or 'vdf'
+ * @return mixed
+ * @throws Exception
+ */
+public function upToDateCheck($appid, $version, $format = 'json')
+```
+
 ### PlayerService
 ```php
 /**
@@ -152,6 +189,7 @@ You can also modify the following environment variables in <b>phpunit.xml</b> fo
 <env name="STEAM_TEST_APP" value="1001860"/> <!-- A test application with basic data (e.g. no achievements) -->
 <env name="STEAM_TEST_APP2" value="730"/> <!-- A full featured game supporting achievements etc. -->
 <env name="STEAM_PLAYER_ID" value="76561198876154375"/> <!-- Steam ID of a player to obtain information -->
+<env name="STEAM_GAME_SERVER" value="127.0.0.1"/> <!-- IP address of a server running one or more game servers (different ports) -->
 ```
 
 Then run the tests via the following command from the project root:
