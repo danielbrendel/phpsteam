@@ -83,4 +83,30 @@ class SteamUserStats extends SteamBase {
             throw $e;
         }
     }
+
+    /**
+     * Get user statistics for game
+     * 
+     * @param $appId The Steam game ID
+     * @param $steamId The Steam ID of the player
+     * @param $format Either 'json', 'xml' or 'vdf'
+     * @return mixed
+     * @throws Exception
+     */
+    public function getUserStatsForGame($appId, $steamId, $format = 'json')
+    {
+        try {
+            $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetUserStatsForGame/v0002/?appid={$appId}&key={$this->apiKey}&steamid={$steamId}&format={$format}";
+            
+            $result = parent::queryResource($url);
+
+            if (!isset($result->playerstats)) {
+                throw new Exception('Player achievements object not found for: ' . $url);
+            }
+
+            return $result->playerstats;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
 }

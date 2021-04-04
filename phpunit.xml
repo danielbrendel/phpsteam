@@ -16,8 +16,7 @@
 	<php>
         <env name="STEAM_API_KEY" value="test"/>
 		<env name="STEAM_TEST_APP" value="1001860"/>
-		<env name="STEAM_TEST_APP2" value="440"/>
-		<env name="STEAM_PLAYER_ID_PRIVATE" value="76561197972495328"/>
-		<env name="STEAM_PLAYER_ID_PUBLIC" value="76561198876154375"/>
+		<env name="STEAM_TEST_APP2" value="730"/>
+		<env name="STEAM_PLAYER_ID" value="76561198876154375"/>
 	</php>
 </phpunit>
