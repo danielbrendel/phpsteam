@@ -46,15 +46,10 @@ class SteamUser extends SteamBase {
         try {
             $steamIdsString = implode(',', $steamIds);
 
-            $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetPlayerSummaries/v0002/?key={$this->apiKey}&steamids={$steamIdsString}&format={$format}";
-            
-            $result = parent::queryResource($url);
+            $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetPlayerSummaries/v0002/?key={$this->apiKey}&steamids={$steamIdsString}&format={$format}";  
+            $result = parent::queryResource($url, $format);
 
-            if (!isset($result->response->players)) {
-                throw new Exception('Player array object not found for: ' . $url);
-            }
-
-            return $result->response->players;
+            return $result;
         } catch (Exception $e) {
             throw $e;
         }
@@ -73,14 +68,9 @@ class SteamUser extends SteamBase {
     {
         try {
             $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetFriendList/v0001/?key={$this->apiKey}&steamid={$steamId}&relationship={$relationship}&format={$format}";
-            
-            $result = parent::queryResource($url);
+            $result = parent::queryResource($url, $format);
 
-            if (!isset($result->friendslist->friends)) {
-                throw new Exception('Player friends array object not found for: ' . $url);
-            }
-
-            return $result->friendslist->friends;
+            return $result;
         } catch (Exception $e) {
             throw $e;
         }

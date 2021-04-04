@@ -12,10 +12,10 @@ final class SteamUserStatsTest extends TestCase
     {
         $obj = new SteamUserStats($_ENV['STEAM_API_KEY']);
         $result = $obj->getGlobalAchievementPercentagesForApp($_ENV['STEAM_TEST_APP2']);
+        
+        $this->assertTrue(isset($result->achievementpercentages->achievements));
 
-        $this->assertTrue(isset($result->achievements));
-
-        foreach ($result->achievements as $item) {
+        foreach ($result->achievementpercentages->achievements as $item) {
             $this->assertTrue(isset($item->name));
             $this->assertTrue(isset($item->percent));
         }
@@ -25,12 +25,12 @@ final class SteamUserStatsTest extends TestCase
     {
         $obj = new SteamUserStats($_ENV['STEAM_API_KEY']);
         $result = $obj->getPlayerAchievements($_ENV['STEAM_TEST_APP2'], $_ENV['STEAM_PLAYER_ID']);
+        
+        $this->assertTrue(isset($result->playerstats->success));
+        $this->assertTrue(isset($result->playerstats->gameName));
+        $this->assertTrue(count($result->playerstats->achievements) > 0);
 
-        $this->assertTrue(isset($result->success));
-        $this->assertTrue(isset($result->gameName));
-        $this->assertTrue(count($result->achievements) > 0);
-
-        foreach ($result->achievements as $item) {
+        foreach ($result->playerstats->achievements as $item) {
             $this->assertTrue(isset($item->apiname));
             $this->assertTrue(isset($item->achieved));
             $this->assertTrue(isset($item->unlocktime));
@@ -41,12 +41,12 @@ final class SteamUserStatsTest extends TestCase
     {
         $obj = new SteamUserStats($_ENV['STEAM_API_KEY']);
         $result = $obj->getUserStatsForGame($_ENV['STEAM_TEST_APP2'], $_ENV['STEAM_PLAYER_ID']);
+        
+        $this->assertTrue(isset($result->playerstats->steamID));
+        $this->assertTrue(isset($result->playerstats->gameName));
+        $this->assertTrue(count($result->playerstats->stats) > 0);
 
-        $this->assertTrue(isset($result->steamID));
-        $this->assertTrue(isset($result->gameName));
-        $this->assertTrue(count($result->stats) > 0);
-
-        foreach ($result->stats as $item) {
+        foreach ($result->playerstats->stats as $item) {
             $this->assertTrue(isset($item->name));
             $this->assertTrue(isset($item->value));
         }

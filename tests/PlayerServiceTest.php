@@ -12,13 +12,13 @@ final class PlayerServiceTest extends TestCase
     {
         $obj = new PlayerService($_ENV['STEAM_API_KEY']);
         $result = $obj->getOwnedGames($_ENV['STEAM_PLAYER_ID']);
+        
+        $this->assertTrue(isset($result->response->game_count));
+        $this->assertTrue(isset($result->response->games));
+        $this->assertIsArray($result->response->games);
+        $this->assertEquals(count($result->response->games), $result->response->game_count);
 
-        $this->assertTrue(isset($result->game_count));
-        $this->assertTrue(isset($result->games));
-        $this->assertIsArray($result->games);
-        $this->assertEquals(count($result->games), $result->game_count);
-
-        foreach ($result->games as $item) {
+        foreach ($result->response->games as $item) {
             $this->assertTrue(isset($item->appid));
             $this->assertTrue(isset($item->name));
         }
@@ -29,11 +29,11 @@ final class PlayerServiceTest extends TestCase
         $obj = new PlayerService($_ENV['STEAM_API_KEY']);
         $result = $obj->getRecentlyPlayedGames($_ENV['STEAM_PLAYER_ID']);
 
-        $this->assertTrue(isset($result->total_count));
-        $this->assertTrue(isset($result->games));
-        $this->assertIsArray($result->games);
+        $this->assertTrue(isset($result->response->total_count));
+        $this->assertTrue(isset($result->response->games));
+        $this->assertIsArray($result->response->games);
 
-        foreach ($result->games as $item) {
+        foreach ($result->response->games as $item) {
             $this->assertTrue(isset($item->appid));
             $this->assertTrue(isset($item->name));
         }

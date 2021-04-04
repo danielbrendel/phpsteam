@@ -16,10 +16,11 @@ final class SteamUserTest extends TestCase
 
         $obj = new SteamUser($_ENV['STEAM_API_KEY']);
         $result = $obj->getPlayerSummaries($steamIds);
+        
+        $this->assertTrue(isset($result->response->players));
+        $this->assertEquals(count($result->response->players), count($steamIds));
 
-        $this->assertEquals(count($result), count($steamIds));
-
-        foreach ($result as $item) {
+        foreach ($result->response->players as $item) {
             $this->assertTrue(isset($item->steamid));
             $this->assertTrue(isset($item->personaname));
             $this->assertTrue(isset($item->avatar));
@@ -31,15 +32,15 @@ final class SteamUserTest extends TestCase
     {
         $obj = new SteamUser($_ENV['STEAM_API_KEY']);
         $result = $obj->getFriendList($_ENV['STEAM_PLAYER_ID']);
+        
+        $this->assertTrue(isset($result->friendslist->friends));
 
-        if (count($result) > 0) {
-            foreach ($result as $item) {
+        if (count($result->friendslist->friends) > 0) {
+            foreach ($result->friendslist->friends as $item) {
                 $this->assertTrue(isset($item->steamid));
                 $this->assertTrue(isset($item->relationship));
                 $this->assertTrue(isset($item->friend_since));
             }
-        } else {
-            $this->addToAssertionCount(1);
         }
     }
 }

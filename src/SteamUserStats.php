@@ -45,14 +45,9 @@ class SteamUserStats extends SteamBase {
     {
         try {
             $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetGlobalAchievementPercentagesForApp/v0002/?gameid={$gameId}&format={$format}";
-            
-            $result = parent::queryResource($url);
+            $result = parent::queryResource($url, $format);
 
-            if (!isset($result->achievementpercentages)) {
-                throw new Exception('Achievement percentages object not found for: ' . $url);
-            }
-
-            return $result->achievementpercentages;
+            return $result;
         } catch (Exception $e) {
             throw $e;
         }
@@ -71,14 +66,9 @@ class SteamUserStats extends SteamBase {
     {
         try {
             $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetPlayerAchievements/v0001/?appid={$appId}&key={$this->apiKey}&steamid={$steamId}&format={$format}";
-            
-            $result = parent::queryResource($url);
+            $result = parent::queryResource($url, $format);
 
-            if (!isset($result->playerstats)) {
-                throw new Exception('Player achievements stats object not found for: ' . $url);
-            }
-
-            return $result->playerstats;
+            return $result;
         } catch (Exception $e) {
             throw $e;
         }
@@ -97,14 +87,9 @@ class SteamUserStats extends SteamBase {
     {
         try {
             $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetUserStatsForGame/v0002/?appid={$appId}&key={$this->apiKey}&steamid={$steamId}&format={$format}";
-            
-            $result = parent::queryResource($url);
+            $result = parent::queryResource($url, $format);
 
-            if (!isset($result->playerstats)) {
-                throw new Exception('Player statistics object not found for: ' . $url);
-            }
-
-            return $result->playerstats;
+            return $result;
         } catch (Exception $e) {
             throw $e;
         }

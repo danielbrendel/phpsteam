@@ -13,15 +13,15 @@ final class SteamNewsTest extends TestCase
         $obj = new SteamNews($_ENV['STEAM_API_KEY']);
         $result = $obj->getNewsForApp($_ENV['STEAM_TEST_APP'], 3, 1024);
 
-        $this->assertTrue(isset($result->appid));
-        $this->assertEquals($result->appid, $_ENV['STEAM_TEST_APP']);
-        $this->assertTrue(count($result->newsitems) >= 3);
+        $this->assertTrue(isset($result->appnews->appid));
+        $this->assertEquals($result->appnews->appid, $_ENV['STEAM_TEST_APP']);
+        $this->assertTrue(count($result->appnews->newsitems) >= 3);
 
-        for ($i = 0; $i < count($result->newsitems); $i++) {
-            $this->assertTrue(isset($result->newsitems[$i]->title));
-            $this->assertTrue(isset($result->newsitems[$i]->url));
-            $this->assertTrue(isset($result->newsitems[$i]->author));
-            $this->assertTrue(isset($result->newsitems[$i]->contents));
+        foreach ($result->appnews->newsitems as $item) {
+            $this->assertTrue(isset($item->title));
+            $this->assertTrue(isset($item->url));
+            $this->assertTrue(isset($item->author));
+            $this->assertTrue(isset($item->contents));
         }
     }
 }

@@ -14,6 +14,7 @@
 namespace PHPSteam;
 
 use Exception;
+use SimpleXMLElement;
 
 /**
  * Class SteamBase
@@ -60,11 +61,12 @@ class SteamBase {
     /**
      * Perform query to web resource
      * 
-     * @param string url
+     * @param string $url
+     * @param string $format
      * @return mixed
      * @throws Exception
      */
-    protected function queryResource(string $url)
+    protected function queryResource(string $url, $format = 'json')
     {
         try {
             $handle = curl_init($url);
@@ -80,7 +82,18 @@ class SteamBase {
 
             curl_close($handle);
 
-            return json_decode($response);
+            switch ($format) {
+                case 'json':
+                    return json_decode($response);
+                case 'xml':
+                    return new SimpleXMLElement($response);
+                case 'vdf':
+                    throw new Exception('The VDF format is currently not supported');
+                default:
+                    throw new Exception('Invalid format specified: ' . $format);
+            }
+            
+            return null;
         } catch (Exception $e) {
             throw $e;
         }

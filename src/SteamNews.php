@@ -47,14 +47,8 @@ class SteamNews extends SteamBase {
     {
         try {
             $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetNewsForApp/v0002/?appid={$appId}&count={$count}&maxlength={$maxlength}&format={$format}";
-            
-            $result = parent::queryResource($url);
-
-            if (!isset($result->appnews)) {
-                throw new Exception('App news object not found for: ' . $url);
-            }
-
-            return $result->appnews;
+            $result = parent::queryResource($url, $format);
+            return $result;
         } catch (Exception $e) {
             throw $e;
         }

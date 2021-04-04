@@ -52,13 +52,9 @@ class PlayerService extends SteamBase {
 
             $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetOwnedGames/v0001/?key={$this->apiKey}&steamid={$steamId}&include_appinfo={$include_appinfo}&include_played_free_games={$include_played_free_games}&format={$format}{$input_json}";
             
-            $result = parent::queryResource($url);
+            $result = parent::queryResource($url, $format);
 
-            if (!isset($result->response)) {
-                throw new Exception('Games response object not found for: ' . $url);
-            }
-
-            return $result->response;
+            return $result;
         } catch (Exception $e) {
             throw $e;
         }
@@ -80,13 +76,9 @@ class PlayerService extends SteamBase {
 
             $url = "http://api.steampowered.com/" . self::STEAM_INTERFACE . "/GetRecentlyPlayedGames/v0001/?key={$this->apiKey}&steamid={$steamId}&format={$format}{$input_count}";
             
-            $result = parent::queryResource($url);
+            $result = parent::queryResource($url, $format);
 
-            if (!isset($result->response)) {
-                throw new Exception('Games response object not found for: ' . $url);
-            }
-
-            return $result->response;
+            return $result;
         } catch (Exception $e) {
             throw $e;
         }
