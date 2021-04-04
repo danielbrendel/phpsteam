@@ -1,0 +1,32 @@
+{
+    "name": "danielbrendel/phpsteam",
+	"version": "1.0",
+    "description": "PHP Steam API",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Brendel",
+            "email": "dbrendel1988@gmail.com"
+        }
+    ],
+    "keywords": [
+        "steam",
+        "library",
+        "php"
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+	"require": {
+        "php": "^8.0.0",
+		"guzzlehttp/guzzle": "^6.3",
+		"phpunit/phpunit": "^8"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPSteam\\": "src/"
+        }
+    },
+    "autoload-dev": {
+    }
+}
