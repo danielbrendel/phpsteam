@@ -16,7 +16,7 @@ Then simply create an instance of the desired helper class, e.g.:
 
 require_once __DIR__ . '/../vendor/autoload.php'; //Don't forget to use Composer autoloader if not already
 
-use PHPSteam; //Require the package namespace
+use PHPSteam\SteamNews; //Require the package class you want to use
 
 $obj = new SteamNews('your api key goes here'); //Access helper methods via $obj
 ```
