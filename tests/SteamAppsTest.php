@@ -43,4 +43,17 @@ final class SteamAppsTest extends TestCase
         $this->assertTrue(isset($result->response->required_version));
         $this->assertTrue(isset($result->response->message));
     }
+
+    public function testGetAppReviews()
+    {
+        $obj = new SteamApps($_ENV['STEAM_API_KEY']);
+        $result = $obj->getAppReviews($_ENV['STEAM_TEST_APP'], 'all', 'english', '', '*', 'all', 'all');
+        
+        $this->assertTrue(isset($result->success));
+        $this->assertEquals($result->success, 1);
+
+        foreach ($result->reviews as $review) {
+            $this->assertTrue(isset($review->recommendationid));
+        }
+    }
 }

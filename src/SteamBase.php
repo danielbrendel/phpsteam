@@ -73,6 +73,7 @@ class SteamBase {
 
             curl_setopt($handle, CURLOPT_HEADER, false);
             curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($handle, CURLOPT_FOLLOWLOCATION, true);
 
             $response = curl_exec($handle);
 
